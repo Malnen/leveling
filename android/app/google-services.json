@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1079134648836",
+    "project_id": "leveling-mob",
+    "storage_bucket": "leveling-mob.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1079134648836:android:94d5a3bdb2f9a658fb5351",
+        "android_client_info": {
+          "package_name": "com.leveling.leveling"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1079134648836-r41gcrekkukgasp3nq67cr9e17j4gktp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCa6f2mJP3XMWh5-iDQnljYp98qTMF0nWw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1079134648836-r41gcrekkukgasp3nq67cr9e17j4gktp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
