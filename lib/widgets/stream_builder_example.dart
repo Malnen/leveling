@@ -9,8 +9,15 @@ class StreamBuilderExample extends StatefulWidget {
 
 class _StreamBuilderExampleState extends State<StreamBuilderExample> {
   late StreamController<int> streamController;
+  final Image image = Image.network('https://www.sp-klucze.pl/wp-content/uploads/2016/11/Jan-Pawe%C5%82-II.jpg');
 
   bool counting = false;
+
+  @override
+  void didChangeDependencies() {
+    precacheImage(image.image, context);
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,22 +84,16 @@ class _StreamBuilderExampleState extends State<StreamBuilderExample> {
             fontSize: 40,
           ),
         ),
-        if (snapshot.data == 2137)
-          Row(
-            children: [
-              const SizedBox(width: 10),
-              SizedBox(
-                child: Image.network('https://www.sp-klucze.pl/wp-content/uploads/2016/11/Jan-Pawe%C5%82-II.jpg'),
-                height: 80,
-                width: 80,
-              ),
-            ],
-          ),
+        if (snapshot.data == 2137) showPapaj(),
       ],
     );
   }
 
   Future<void> generateNumbers() async {
+    if (counting) {
+      return;
+    }
+
     counting = true;
     setState(() {});
     streamController = StreamController<int>();
@@ -109,5 +110,18 @@ class _StreamBuilderExampleState extends State<StreamBuilderExample> {
     await Future<void>.delayed(const Duration(seconds: 2));
     counting = false;
     setState(() {});
+  }
+
+  Row showPapaj() {
+    return Row(
+      children: [
+        const SizedBox(width: 10),
+        SizedBox(
+          child: image,
+          height: 80,
+          width: 80,
+        ),
+      ],
+    );
   }
 }
