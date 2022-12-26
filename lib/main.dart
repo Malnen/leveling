@@ -1,13 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:leveling/models/todo.dart';
 import 'package:leveling/push_notification/local_notification_manager.dart';
-import 'package:leveling/push_notification/notification_sender.dart';
 import 'package:leveling/push_notification/push_notification_manager.dart';
 import 'package:leveling/widgets/context_read_example.dart';
 import 'package:leveling/widgets/context_select_example.dart';
 import 'package:leveling/widgets/context_watch_example.dart';
 import 'package:leveling/widgets/counter_provider.dart';
+import 'package:leveling/widgets/navigator_todo.dart';
 import 'package:leveling/widgets/notification_example.dart';
 import 'package:leveling/widgets/stream_builder_example.dart';
 
@@ -43,6 +44,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final List<Todo> todos = <Todo>[];
   String title = '';
   String body = '';
 
@@ -71,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 5,
+      length: 6,
       child: Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
@@ -81,6 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Tab(text: 'Context Read'),
             Tab(text: 'Context Watch'),
             Tab(text: 'Context Select'),
+            Tab(text: 'Navigator'),
           ]),
         ),
         body: TabBarView(
@@ -99,6 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
             const CounterProvider(
               child: ContextSelectExample(),
             ),
+            NavigatorTodo(todos: todos),
           ],
         ),
       ),
