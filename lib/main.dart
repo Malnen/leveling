@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:leveling/push_notification/local_notification_manager.dart';
 import 'package:leveling/push_notification/notification_sender.dart';
 import 'package:leveling/push_notification/push_notification_manager.dart';
+import 'package:leveling/widgets/context_read_example.dart';
+import 'package:leveling/widgets/context_select_example.dart';
+import 'package:leveling/widgets/context_watch_example.dart';
+import 'package:leveling/widgets/counter_provider.dart';
 import 'package:leveling/widgets/notification_example.dart';
 import 'package:leveling/widgets/stream_builder_example.dart';
 
@@ -67,22 +71,36 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 5,
       child: Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
-          bottom: const TabBar(tabs: <Tab>[
+          bottom: const TabBar(isScrollable: true, tabs: <Tab>[
             Tab(text: 'Notifications'),
             Tab(text: 'Stream Builder'),
+            Tab(text: 'Context Read'),
+            Tab(text: 'Context Watch'),
+            Tab(text: 'Context Select'),
           ]),
         ),
-        body: TabBarView(children: <Widget>[
-          NotificationExample(
-            title: title,
-            body: body,
-          ),
-          StreamBuilderExample(),
-        ]),
+        body: TabBarView(
+          children: <Widget>[
+            NotificationExample(
+              title: title,
+              body: body,
+            ),
+            StreamBuilderExample(),
+            const CounterProvider(
+              child: ContextReadExample(),
+            ),
+            const CounterProvider(
+              child: ContextWatchExample(),
+            ),
+            const CounterProvider(
+              child: ContextSelectExample(),
+            ),
+          ],
+        ),
       ),
     );
   }
